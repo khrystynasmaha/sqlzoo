@@ -58,8 +58,22 @@ WHERE name=capital;
 --12. Find the country where the capital is the country plus "City".
 
 SELECT name FROM world
-WHERE concat(name, ' ', 'City')=capital;
+WHERE capital LIKE CONCAT ('%', name, '%') AND 
+capital LIKE '%City%';
 
 --13. Find the capital and the name where the capital includes the name of the country.
 
+SELECT capital, name FROM world
+WHERE capital LIKE CONCAT('%', name, '%');
+ 
+ --14. Find the capital and the name where the capital is an extension of name of the country.
+ 
+SELECT capital, name FROM world
+WHERE capital LIKE CONCAT(name, '%') 
+AND capital<>name;
 
+--15. Show the name and the extension where the capital is an extension of name of the country.
+
+SELECT capital, name FROM world
+WHERE capital LIKE CONCAT(name, '%') 
+AND capital<>name;
